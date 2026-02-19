@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>درگاه پرداخت | ارزان کالا</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    </head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-2" style="background: #050606; border-bottom: 2px solid #008040;">
+        <div class="w-100 px-3 px-lg-4">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <a class="navbar-brand fw-bold" href="index.html">
+                    <i class="fa fa-store"></i> ارزان‌کالا
+                </a>
+
+                <div class="dropdown d-none d-lg-block mx-3">
+                    <button class="btn dropdown-toggle text-white d-flex align-items-center"
+                        style="background: #1a1e1d; border: 1px solid #2a2f2e; border-radius: 30px; padding: 0.4rem 1.2rem;"
+                        data-bs-toggle="dropdown">
+                        <i class="fa fa-bars ms-2" style="color: #00c853;"></i> دسته‌بندی
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item py-2" href="category.html?category=mobile"><i
+                                    class="fa fa-mobile-alt ms-2" style="color: #00c853;"></i> موبایل</a></li>
+                        <li><a class="dropdown-item py-2" href="category.html?category=laptop"><i
+                                    class="fa fa-laptop ms-2" style="color: #00c853;"></i> لپ تاپ</a></li>
+                        <li><a class="dropdown-item py-2" href="category.html?category=accessory"><i
+                                    class="fa fa-headphones ms-2" style="color: #00c853;"></i> لوازم جانبی</a></li>
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link px-3" href="index.html"><i class="fa fa-home ms-1"
+                                    style="color: #00c853;"></i> خانه</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="category.html"><i class="fa fa-store ms-1"
+                                    style="color: #00c853;"></i> محصولات</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="choose.html"><i class="fa fa-robot ms-1"
+                                    style="color: #00c853;"></i> پیشنهاد</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="compare.html"><i
+                                    class="fa fa-balance-scale ms-1" style="color: #00c853;"></i> <span class="compare-wrapper">مقایسه <span
+                                    class="badge bg-success compare-counter ms-1" id="compareCount"
+                                    style="background: #00c853;">0</span></span></a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link px-3" href="register.html"><i
+                                    class="fa fa-user ms-1" style="color: #00c853;"></i> ورود</a></li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3 w-100">
+                        <form class="d-flex w-100" action="category.html" method="GET" style="position: relative;"
+                            onsubmit="event.preventDefault(); var s=this.querySelector('input').value; if(s) window.location='category.html?search='+encodeURIComponent(s); else alert('لطفاً متن جستجو را وارد کنید');">
+                            <input type="text" name="search" class="form-control" placeholder="جستجو..."
+                                style="background: #1a1e1d; border: 1px solid #2a2f2e; color: white; border-radius: 30px; padding: 0.4rem 1rem 0.4rem 2.2rem; width: 100%;">
+                            <button type="submit"
+                                style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #00c853;"><i
+                                    class="fa fa-search"></i></button>
+                        </form>
+                        <a href="register.html" class="login-btn d-none d-lg-flex">
+                            <i class="fa fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <div class="cart__count position-relative">
+                        <button class="btn btn-link text-white p-0" id="cartToggleBtn">
+                            <i class="fa fa-shopping-cart" style="color: #00c853; font-size: 1.3rem;"></i>
+                            <span
+                                class="total__counter position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                                style="background: #00c853;">0</span>
+                        </button>
+                    </div>
+                    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarMain" id="navbarToggler">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="cart-menu-wrapper" id="cartMenu">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-12 col-lg-4">
+                    <div class="cart">
+                        <div class="cart-header">
+                            <h5 class="mb-0"><i class="fa fa-shopping-cart me-2"></i> سبد خرید شما</h5>
+                        </div>
+                        <div class="cart-body">
+                            <div class="cart__items"></div>
+                            <div class="cart-summary">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="fw-bold fs-5 text-white">مجموع :</span>
+                                    <span class="total__cost fs-4 fw-bold">0</span>
+                                    <span class="text-white-50">تومان</span>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-danger-custom flex-grow-1 removeAllItems"><i
+                                            class="fa fa-trash me-1"></i> حذف همه</button>
+                                    <a id="goToCheckout" class="btn btn-warning-custom flex-grow-1" href="buy.html"><i
+                                            class="fa fa-credit-card me-1"></i> پرداخت</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container buy" style="margin-top: 7rem;">
+        <div class="row justify-content-center">
+            <div class="col-lg-11 pay-box">
+                <h3 class="text-center mb-4">
+                    <i class="fa fa-shield-alt text-success me-2"></i>
+                    درگاه پرداخت امن ارزان کالا
+                </h3>
+
+                <div class="row gy-4">
+                    <!-- فرم اطلاعات -->
+                    <div class="col-lg-7">
+                        <div class="mb-3">
+                            <label><i class="fa fa-user me-1 text-success"></i> نام و نام خانوادگی</label>
+                            <input type="text" class="form-control" placeholder="مثال: علی محمدی">
+                        </div>
+
+                        <div class="mb-3">
+                            <label><i class="fa fa-mobile-alt me-1 text-success"></i> شماره موبایل</label>
+                            <input type="text" class="form-control" placeholder="09xxxxxxxxx">
+                        </div>
+
+                        <div class="mb-3">
+                            <label><i class="fa fa-envelope me-1 text-success"></i> ایمیل</label>
+                            <input type="email" class="form-control" placeholder="example@email.com">
+                        </div>
+
+                        <div class="mb-3">
+                            <label><i class="fa fa-at me-1 text-success"></i> نام کاربری</label>
+                            <input type="text" class="form-control" placeholder="نام کاربری خود را وارد کنید">
+                        </div>
+
+                        <div class="mb-3">
+                            <label><i class="fa fa-lock me-1 text-success"></i> رمز عبور</label>
+                            <input type="password" class="form-control" placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <!-- خلاصه سفارش -->
+                    <div class="col-lg-5">
+                        <div class="summary">
+                            <h5 class="mb-3">
+                                <i class="fa fa-shopping-bag me-2 text-success"></i>
+                                خلاصه سفارش
+                            </h5>
+
+                            <div id="orderItems"></div>
+
+                            <div class="d-flex justify-content-between total">
+                                <span>مبلغ نهایی</span>
+                                <span><span id="totalPrice">0</span> تومان</span>
+                            </div>
+
+                            <button class="pay-btn" id="payButton">
+                                <i class="fa fa-credit-card me-2"></i>
+                                انتقال به درگاه پرداخت
+                            </button>
+
+                            <div class="secure">
+                                <i class="fa fa-lock"></i>
+                                پرداخت شما کاملاً امن و رمزنگاری شده است
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="category.html" class="btn btn-outline-success">
+                        <i class="fa fa-arrow-right me-1"></i>
+                        بازگشت به فروشگاه
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderItems = document.getElementById('orderItems');
+            const totalPrice = document.getElementById('totalPrice');
+
+            if (cart.length === 0) {
+                orderItems.innerHTML = '<p class="text-center text-muted py-4">🛒 سبد خرید شما خالی است</p>';
+                totalPrice.innerText = '0';
+                
+                document.getElementById('payButton').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('سبد خرید شما خالی است');
+                    window.location.href = 'category.html';
+                });
+                return;
+            }
+
+            let total = 0;
+            orderItems.innerHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * (item.quantity || 1);
+                total += itemTotal;
+                
+                orderItems.insertAdjacentHTML('beforeend', `
+                    <div class="summary-item">
+                        <span>
+                            <i class="fa fa-circle text-success me-1" style="font-size: 8px;"></i>
+                            ${item.name} × ${item.quantity || 1}
+                        </span>
+                        <span class="text-success fw-bold">${itemTotal.toLocaleString()}</span>
+                    </div>
+                `);
+            });
+
+            totalPrice.innerText = total.toLocaleString();
+            
+            document.getElementById('payButton').addEventListener('click', function() {
+                if (cart.length > 0) {
+                    alert('✅ به درگاه پرداخت منتقل می‌شوید');
+                }
+            });
+        });
+    </script>
+    
+    <script src="js/products-data.js"></script>
+    <script src="js/shop-cart.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+</body>
+</html>
